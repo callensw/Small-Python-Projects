@@ -1,0 +1,12 @@
+name = 'Chase Allensworth'
+age = 27
+relationship_status = 'single'
+print(relationship_status) #prints single
+ 
+relationship_status = 'it\'s complicated'
+print(relationship_status) #prints it's complicated
+ 
+birth_year = input('what year were you born?')
+new_age = 2020 - int(birth_year)
+ 
+print(f'your age is {new_age}')
