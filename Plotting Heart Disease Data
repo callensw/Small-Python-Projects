@@ -1,1 +1,54 @@
-pass
+# The goal of this project is to plot heart disease analysisdata in 'from heart-disease.csv'
+# The data first needs to be manipulated to get in a format suitable for plotting
+# I'll be using the Object Oriented plotting method
+
+%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+heart_disease = pd.read_csv('heart-disease.csv')
+
+# Select only the patients over the age of 50
+over_50 = heart_disease[heart_disease["age"] > 50]
+
+# Subplot of chol, age, thalach
+fig, (ax0, ax1) = plt.subplots(nrows=2,
+                               ncols=1,
+                               figsize=(10, 10),
+                               sharex=True)
+
+# Add data to ax0
+scatter = ax0.scatter(x=over_50["age"],
+                      y=over_50["chol"],
+                      c=over_50["target"])
+# Customize ax0
+ax0.set(title="Heart Disease and Cholesterol Levels",
+        ylabel="Cholesterol")
+        
+# Add a legend to ax0
+ax0.legend(*scatter.legend_elements(), title="Target")
+
+# Add a meanline
+ax0.axhline(y=over_50["chol"].mean(),
+            linestyle='--');
+
+
+# Add data to ax1
+scatter_2 = ax1.scatter(x=over_50["age"],
+                        y=over_50["thalach"],
+                        c=over_50["target"])
+
+# Customize ax1
+ax1.set(title="Heart Disease and Max Heart Rate",
+        xlabel="Age",
+        ylabel="Thalach")
+
+# Add a legend to ax1
+ax1.legend(*scatter_2.legend_elements(), title="Target")
+# Add a meanline
+ax1.axhline(y=over_50["thalach"].mean(),
+            linestyle='--');
+
+# Add a title to the figure
+fig.suptitle("Heart Disease Analysis", fontsize=16, fontweight='bold');
