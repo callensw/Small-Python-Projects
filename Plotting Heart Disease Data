@@ -12,6 +12,9 @@ heart_disease = pd.read_csv('heart-disease.csv')
 # Select only the patients over the age of 50
 over_50 = heart_disease[heart_disease["age"] > 50]
 
+# Set the style
+plt.style.use('seaborn-whitegrid')
+
 # Subplot of chol, age, thalach
 fig, (ax0, ax1) = plt.subplots(nrows=2,
                                ncols=1,
@@ -21,11 +24,15 @@ fig, (ax0, ax1) = plt.subplots(nrows=2,
 # Add data to ax0
 scatter = ax0.scatter(x=over_50["age"],
                       y=over_50["chol"],
-                      c=over_50["target"])
+                      c=over_50["target"],
+                      cmap="winter");
 # Customize ax0
 ax0.set(title="Heart Disease and Cholesterol Levels",
         ylabel="Cholesterol")
         
+# Change ax0 x axis limits
+ax0.set_xlim([50, 80])    
+
 # Add a legend to ax0
 ax0.legend(*scatter.legend_elements(), title="Target")
 
@@ -37,15 +44,21 @@ ax0.axhline(y=over_50["chol"].mean(),
 # Add data to ax1
 scatter_2 = ax1.scatter(x=over_50["age"],
                         y=over_50["thalach"],
-                        c=over_50["target"])
+                        c=over_50["target"],
+                        cmap="winter")
 
 # Customize ax1
 ax1.set(title="Heart Disease and Max Heart Rate",
         xlabel="Age",
         ylabel="Thalach")
+        
+# Change ax1 axis limits
+ax1.set_xlim([50, 80])
+ax1.set_ylim([60, 200])
 
 # Add a legend to ax1
 ax1.legend(*scatter_2.legend_elements(), title="Target")
+
 # Add a meanline
 ax1.axhline(y=over_50["thalach"].mean(),
             linestyle='--');
