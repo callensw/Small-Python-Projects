@@ -1,4 +1,4 @@
-# The goal of this project is to plot heart disease analysisdata in 'from heart-disease.csv'
+# The goal of this project is to plot heart disease analysis data in 'from heart-disease.csv'
 # The data first needs to be manipulated to get in a format suitable for plotting
 # I'll be using the Object Oriented plotting method
 
